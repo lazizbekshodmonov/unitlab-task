@@ -1,9 +1,21 @@
 <script setup>
-import HomeLayout from "@/layouts/HomeLayout.vue";
+import NavbarComponent from '../components/NavbarComponent.vue'
 </script>
 
 <template>
-  <home-layout/>
+  <div class="app">
+    <navbar-component />
+    <div class="container pt-4">
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import '@/assets/styles/variable';
+
+.app {
+  min-height: 100vh;
+  background-color: rgb($muted, 0.1);
+}
+</style>

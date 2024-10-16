@@ -1,10 +1,11 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ref } from 'vue'
 import { debounce } from '@/helpers/index.js'
 
 const router = useRouter()
+const route = useRoute()
 const store = useStore()
 
 const movies = ref([])
@@ -70,14 +71,19 @@ function navigateMovieList(id) {
           </template>
         </a-dropdown>
       </div>
-      <a-button
-        @click="router.push({ name: 'MovieCreateFormView' })"
-        size="large"
-        type="primary"
-      >
-        +
-        {{ $t('movie_details_page.add') }}
-      </a-button>
+      <div class="min-w-[160px] h-10 flex justify-end">
+        <a-button
+          v-if="
+            route.name === 'MovieListView' || route.name === 'FavoritesListView'
+          "
+          @click="router.push({ name: 'MovieCreateFormView' })"
+          size="large"
+          type="primary"
+        >
+          +
+          {{ $t('movie_details_page.add') }}
+        </a-button>
+      </div>
     </div>
   </div>
 </template>
